@@ -22,7 +22,7 @@ public class WelcomeAction2 extends ActionSupport implements ModelDriven<User>, 
 
 	public void setUser(User user) {
 		this.user = user;
-	}
+	}//master
 
 	@Override
     public User getModel() {
