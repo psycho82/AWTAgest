@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+	<constant name="struts.convention.result.path" value="/"></constant>
+
+	<package name="it.awta.app.awtagest.controller" namespace="/"
+		extends="struts-default">
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="authentication"
+				class="it.awta.app.awtagest.interceptors.AuthenticationInterceptor"></interceptor>
+			<interceptor-stack name="authStack">
+				<interceptor-ref name="authentication"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="authStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login" type="redirect">/home.action</result>
+		</global-results>
+
+		<action name="*Menu" method="{1}"
+			class="it.awta.app.awtagest.controller.LoginAction">
+			<result name="first" type="tiles">first</result>
+			<result name="second" type="tiles">second</result>
+		</action>
+		<action name="np">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/np.jsp</result>
+		</action>
+
+		<action name="login" class="it.awta.app.awtagest.controller.LoginAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- <result name="success">/welcome.jsp</result> -->
+			<result name="success" type="tiles">baseLayout</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		
+		<action name="logout" class="it.awta.app.awtagest.controller.LoginAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="input">/index.jsp</result>
+		</action>
+
+		<action name="welcome" class="it.awta.app.awtagest.controller.WelcomeAction">
+			<result name="success" type="tiles">welcome</result>
+		</action>
+		
+		<action name="home">
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+            <result>/index.jsp</result>
+        </action>
+        
+		<action name="*">
+			<result name="success" type="tiles">baseLayout</result>
+			<!-- <result name="success" type="dispatcher">/index.jsp</result> -->
+		</action>
+	</package>
+</struts>
