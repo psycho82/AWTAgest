@@ -21,6 +21,7 @@ public class LoginAction extends ActionSupport implements SessionAware, ModelDri
 			sessionAttributes.put("USER", user);
 			return SUCCESS;
 		}
+		addActionMessage("Nome utente o password errati");
 		return INPUT;
 	}
 

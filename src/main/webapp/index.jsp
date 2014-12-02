@@ -9,6 +9,7 @@
 <title>Login Page</title>
 </head>
 <body>
+<s:actionmessage cssStyle="color: red;"/>
 <h3>Welcome User, please login below</h3>
 <s:form action="login">
     <s:textfield name="user" label="User Name"></s:textfield>

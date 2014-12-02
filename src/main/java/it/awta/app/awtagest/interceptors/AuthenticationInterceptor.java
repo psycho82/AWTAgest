@@ -30,14 +30,15 @@ public class AuthenticationInterceptor implements Interceptor {
 		User user = (User) sessionAttributes.get("USER");
 
 		if(user == null){
-			System.out.println("Non loggato");
 			return Action.LOGIN;
 		}else{
 			Action action = (Action) actionInvocation.getAction();
 			if(action instanceof UserAware){
 				((UserAware) action).setUser(user);
+			}else{
+				user.setUserName("Sconosciuto");
+				((UnknownUser) action).setUser(user);
 			}
-			System.out.println("Loggato come "+user.getUserName());
 			return actionInvocation.invoke();
 		}
 	}

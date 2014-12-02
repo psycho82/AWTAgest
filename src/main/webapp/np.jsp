@@ -9,6 +9,6 @@
 <title>Login Page</title>
 </head>
 <body>
-<h3>Welcome <s:property value="userName"></s:property></h3>
+<h3>Area non protetta <s:property value="userName"></s:property></h3>
 </body>
 </html>

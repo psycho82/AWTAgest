@@ -40,20 +40,27 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result>/np.jsp</result>
 		</action>
+		
+		<action name="ap">
+			<result>/ap.jsp</result>
+		</action>
 
 		<action name="login" class="it.awta.app.awtagest.controller.LoginAction">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<!-- <result name="success">/welcome.jsp</result> -->
 			<result name="success" type="tiles">baseLayout</result>
 			<result name="input">/index.jsp</result>
 		</action>
 		
-		<action name="logout" class="it.awta.app.awtagest.controller.LoginAction">
+		<action name="logout" class="it.awta.app.awtagest.controller.LoginAction" method="logout">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="input">/index.jsp</result>
+			<result name="success">/index.jsp</result>
 		</action>
 
 		<action name="welcome" class="it.awta.app.awtagest.controller.WelcomeAction">
+			<result name="success" type="tiles">welcome</result>
+		</action>
+		
+		<action name="welcome2" class="it.awta.app.awtagest.controller.WelcomeAction2">
 			<result name="success" type="tiles">welcome</result>
 		</action>
 		
@@ -63,8 +70,8 @@
         </action>
         
 		<action name="*">
-			<result name="success" type="tiles">baseLayout</result>
-			<!-- <result name="success" type="dispatcher">/index.jsp</result> -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result>/error.jsp</result>
 		</action>
 	</package>
 </struts>
