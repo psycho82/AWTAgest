@@ -35,9 +35,6 @@ public class AuthenticationInterceptor implements Interceptor {
 			Action action = (Action) actionInvocation.getAction();
 			if(action instanceof UserAware){
 				((UserAware) action).setUser(user);
-			}else{
-				user.setUserName("Sconosciuto");
-				((UnknownUser) action).setUser(user);
 			}
 			return actionInvocation.invoke();
 		}
