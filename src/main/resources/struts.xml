@@ -60,10 +60,6 @@
 			<result name="success" type="tiles">welcome</result>
 		</action>
 		
-		<action name="welcome2" class="it.awta.app.awtagest.controller.WelcomeAction2">
-			<result name="success" type="tiles">welcome</result>
-		</action>
-		
 		<action name="home">
             <interceptor-ref name="defaultStack"></interceptor-ref>
             <result>/index.jsp</result>
