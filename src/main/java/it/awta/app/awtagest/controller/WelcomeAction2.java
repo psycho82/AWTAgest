@@ -27,5 +27,5 @@ public class WelcomeAction2 extends ActionSupport implements ModelDriven<User>, 
 	@Override
     public User getModel() {
         return this.user;
-    }//B1
+    }//B1 fine
 }
